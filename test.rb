@@ -4,7 +4,7 @@ loop do
   print "Enter product id: "
   id = gets.strip
 
-  print "Enter amount (how much items you want to order)"
+  print "Enter amount (how much items you want to order): "
   n = gets.strip.to_i
 
   x = hh[id].to_i
@@ -12,6 +12,14 @@ loop do
   hh[id] = x
 
   puts hh.inspect
+
+  total = 0
+  hh.each do |key, value|
+    total = total + value
+  end
+
+  # puts total variable
+  puts "Total items in cart #{total}"
 
   puts "=============================="
 end
