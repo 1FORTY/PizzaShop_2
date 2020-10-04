@@ -40,3 +40,20 @@ function cart_get_number_of_items()
 
   return cnt;
 }
+
+function cart_get_orders()
+{
+  let orders = '';
+  for (let i = 0; i < window.localStorage.length; i++)
+  {
+    let key = window.localStorage.key(i); // Получаем ключ
+    let value = window.localStorage.getItem(key); // Получаем значения, в Ruby: hh['key'] = x
+
+    if (key.indexOf('product_') == 0) 
+    {
+      orders += key + ' = ' + value * 1 + ', ';
+    }
+  }
+
+  return orders;
+}
