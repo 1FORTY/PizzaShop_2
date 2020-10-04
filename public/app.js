@@ -20,7 +20,7 @@ function add_to_cart(id)
 
   window.localStorage.setItem(key, x); // hash['product_id'] = x
 
-  alert('Items in your cart: ' + cart_get_number_of_items());
+  update_orders_input()
 }
 
 // Вывод колличества item'ов в корзине
@@ -39,6 +39,12 @@ function cart_get_number_of_items()
   }
 
   return cnt;
+}
+
+function update_orders_input()
+{
+  let orders = cart_get_orders();
+  $('#orders_input').val(orders);
 }
 
 function cart_get_orders()
