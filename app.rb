@@ -19,3 +19,8 @@ end
 get '/about' do
   erb :about
 end
+
+
+post '/cart' do
+  erb "Hello"
+end
