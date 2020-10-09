@@ -24,10 +24,33 @@
     <% end %>
 
     <tr>
-      <th>All</th>
+      <th>Total</th>
       <td></td>
       <td><%= total_price %> Rub</td>
       <td><%= total_qty %></td>
     </tr>
   </tbody>
 </table>
+
+<form action="/place_order" method="post" role="form">
+
+  <input name="order[orders_input]"type="hidden" class="form-control">
+
+  <div class="form-group">
+    <label for="">Ваше имя</label>
+    <input name="order[name]"type="text" class="form-control">
+  </div>
+
+  <div class="form-group">
+    <label for="">Ваш телефон</label>
+    <input name="order[phone]" type="text" class="form-control">
+  </div>
+
+  <div class="form-group">
+    <label for="">Ваш Адрес</label>
+    <input name="order[address]" type="text" class="form-control">
+  </div>
+
+  <input type="submit" class="btn btn-success btn-lg" value="ORDER">
+
+</form>
