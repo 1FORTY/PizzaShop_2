@@ -10,8 +10,15 @@ class Product < ActiveRecord::Base
 
 end
 
-get '/' do
+class Order < ActiveRecord::Base
+
+end
+
+before do
   @products = Product.all
+end
+
+get '/' do
 
   erb :index
 end
@@ -20,11 +27,9 @@ get '/about' do
   erb :about
 end
 
-
 post '/cart' do
-  orders_line = params[:orders_input]
-
-  @items = parse_order_line orders_line
+  @items_input = params[:orders]
+  @items = parse_orders_line @items_input
 
   @items.each do |item|
     item[0] = Product.find(item[0])
@@ -33,21 +38,32 @@ post '/cart' do
   erb :cart
 end
 
-def parse_order_line order_line
+def parse_orders_line orders_line
+  s1 = orders_line.split(',')
 
-  s1 = order_line.split(',')
-
-  arr = []
+  order = []
+  s = []
   s1.each do |x|
-    s2 = x.split('=')
+    id = x.split('=')[0].split('_')[1]
+    cnt = x.split('=')[1]
 
-    s3 = s2[0].split('_')
-    
-    id = s3[1]
-    cnt = s2[1]
-
-    arr2 = [id, cnt]
-    arr.push arr2
+    s = [id, cnt]
+    order += [s]
   end
-    return arr
+
+  return order
+end
+
+post '/place_order' do 
+    place_order = Order.new params[:order] do |o|
+    o.save
+
+    @items = parse_orders_line o.order_input
+    @items.each do |item|
+      item[0] = Product.find(item[0])
+    end
+    
+  end
+
+  erb :place_order
 end

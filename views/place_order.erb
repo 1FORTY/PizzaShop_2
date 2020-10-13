@@ -1,4 +1,4 @@
-<h2>Welcome to Pizza Shop</h2>
+<h2>Ваш заказ принят</h2>
 
 <div class="row">
   <% @products.each do |p| %>
@@ -32,7 +32,16 @@
   <% end %>
 </div>
 
-<br>
-<br>
+<div class="row">
+    <div>
+      <% total_price = 0 %>
+      <h2>Total price:
+        <% @items.each do |item| %>
+          <% item[0].price %>
+          <% total_price += item[1].to_i * item[0].price %>
+    <% end %>
 
-<button class="btn btn-primary" onclick="something()">Click me</button>
+        <%= total_price %>
+      </h2> 
+    </div>
+  </div>
