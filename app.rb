@@ -65,5 +65,5 @@ post '/place_order' do
     
   end
 
-  erb :place_order
+  erb :order_placed
 end
