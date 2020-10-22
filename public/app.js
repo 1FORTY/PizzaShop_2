@@ -63,3 +63,7 @@ function update_orders_button()
   let text = cart_get_number_of_items();
   $('#orders_button').val('CART(' + text + ')');
 }
+function cancel_order() {
+  alert('aaa');
+  return false;
+}
